@@ -49,7 +49,9 @@ extension ForecastsCollectionView: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = dequeueReusableCell(withReuseIdentifier: ForecastsCollectionViewCell.reuseId, for: indexPath) as! ForecastsCollectionViewCell
+        let cell = dequeueReusableCell(withReuseIdentifier: ForecastsCollectionViewCell.reuseId,
+                                       for: indexPath) as? ForecastsCollectionViewCell
+        guard let cell = cell else { return ForecastsCollectionViewCell()}
         guard let cells = cells else { return cell}
         cell.configure(data: cells[indexPath.row])
         return cell
